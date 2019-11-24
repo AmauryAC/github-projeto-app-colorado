@@ -1,3 +1,5 @@
+'use strict'
+
 const app = require('../AppColorado.Api/bin/express');
 const variables = require('../AppColorado.Api/bin/configuration/variables');
 
