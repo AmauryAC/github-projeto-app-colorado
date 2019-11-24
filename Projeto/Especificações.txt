@@ -1,0 +1,6 @@
+App:
+-Comércios e serviços cadastrados
+-Opções de busca
+-Características e qualificações dos serviços e produtos ofertados
+ ->Escolar(quais escolas atendem), Restaurante(cardápio)
+-Sistema de avaliação
