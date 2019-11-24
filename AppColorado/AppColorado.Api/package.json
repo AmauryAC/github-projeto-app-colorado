@@ -1,0 +1,14 @@
+{
+  "name": "appcolorado.api",
+  "version": "1.0.0",
+  "description": "API feita em NodeJS para utilização do nosso App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amaury Costa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
