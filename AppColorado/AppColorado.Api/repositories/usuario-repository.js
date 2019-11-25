@@ -4,6 +4,8 @@ require('../models/usuario-model');
 
 const base = require('../bin/base/repository-base');
 
+const md5 = require('md5');
+
 class usuarioRepository {
     constructor() {
         this._base = new base('Usuario');
@@ -11,7 +13,13 @@ class usuarioRepository {
     }
 
     async isEmailExists(_email) {
-        return this._base._model.findOne({ email: _email }, this._projection);
+        return await this._base._model.findOne({ email: _email }, this._projection);
+    }
+
+    async authenticate(_email, _senha) {
+        let _hashSenha = md5(_senha);
+
+        return await this._base._model.findOne({ email: _email, senha: _hashSenha }, this._projection);
     }
 
     async create(data) {
