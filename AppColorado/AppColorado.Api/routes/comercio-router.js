@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const controller = require('../controllers/horarioFuncionamento-controller');
+const controller = require('../controllers/comercio-controller');
 const auth = require('../middlewares/authentication');
 
 const router = express.Router();

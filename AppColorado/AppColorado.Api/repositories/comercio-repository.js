@@ -1,12 +1,12 @@
 'use strict'
 
-require('../models/horarioFuncionamento-model');
+require('../models/comercio-model');
 
 const base = require('../bin/base/repository-base');
 
-class horarioFuncionamentoRepository {
+class comercioRepository {
     constructor() {
-        this._base = new base('HorarioFuncionamento');
+        this._base = new base('Comercio');
     }
 
     async create(data) {
@@ -30,4 +30,4 @@ class horarioFuncionamentoRepository {
     }
 }
 
-module.exports = horarioFuncionamentoRepository;
+module.exports = comercioRepository;
