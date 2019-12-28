@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, Loading } from 'ionic-angular/umd';
+import { LoadingController, Loading } from 'ionic-angular';
 
 /*
   Generated class for the SpinnerProvider provider.
