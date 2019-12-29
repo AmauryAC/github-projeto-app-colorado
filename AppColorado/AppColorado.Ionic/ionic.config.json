@@ -1,7 +1,13 @@
 {
-  "name": "NoFood.Ionic",
+  "name": "AppColorado.Ionic",
   "integrations": {
     "cordova": {}
   },
+  "proxies": [
+    {
+      "path": "/v1",
+      "proxyUrl": "http://localhost:3000/api/"
+    }
+  ],
   "type": "ionic-angular"
 }

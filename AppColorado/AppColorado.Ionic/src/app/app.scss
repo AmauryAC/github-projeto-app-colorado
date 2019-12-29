@@ -14,3 +14,32 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.backImage .scroll-content {
+    background-color: rgba(map-get($colors, background), 0.8) !important;
+}
+
+ion-content.backImage {
+    background-image: url('/assets/imgs/fundo.png');
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-size: 100%;
+}
+
+.logo {
+    width: 100%;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.list-transparent .item {
+    background: transparent !important;
+}
+
+.list.list-transparent .item-input:last-child {
+    border-bottom: none !important;
+}
