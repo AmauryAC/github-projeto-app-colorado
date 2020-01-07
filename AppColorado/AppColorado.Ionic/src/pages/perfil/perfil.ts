@@ -1,3 +1,5 @@
+import { ConfigHelper } from './../../app/helpers/configHelper';
+import { UsuarioModel } from './../../app/models/usuarioModel';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,11 +17,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfilPage {
 
+  usuario: UsuarioModel;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.usuario = <UsuarioModel>JSON.parse(localStorage.getItem(ConfigHelper.storageKeys.user));
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
+  admCategorias(): void {
+    this.navCtrl.push('AdmCategoriasPage');
   }
 
 }
