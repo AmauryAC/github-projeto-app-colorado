@@ -18,8 +18,8 @@ export class MeusNegociosPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MeusNegociosPage');
+  admComercios(): void {
+    this.navCtrl.push('AdmComerciosPage');
   }
 
 }

@@ -1,0 +1,40 @@
+page-categorias {
+    ion-content {
+        background: url('https://b.rgbimg.com/users/a/ay/ayla87/300/qJ8wWDc.jpg');
+        background-size: cover;
+    }
+
+    .categoria {
+        width: 50%;
+        float: left;
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    .categoria p {
+        text-shadow: 2px 2px 2px #000;
+    }
+
+    .categoria .image {
+        width: 120px;
+        height: 120px;
+        border: 2px solid white;
+        border-radius: 50%;
+        margin: 0 auto;
+        background-size: cover;
+    }
+
+    .chamada {
+        width: 100%;
+        display: block;
+        text-align: center;
+        color: white;
+        font-size: 2.1rem;
+        font-weight: bold;
+        margin: 0px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+}

@@ -18,8 +18,14 @@ import { CategoriaModel } from '../../app/models/categoriaModel';
 export class AdmCategoriasPage {
 
   lista: Array<CategoriaModel> = new Array<CategoriaModel>();
+  isLoading: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private categoriaSrv: CategoriaProvider) {
+    //this._loadData();
+  }
+
+  ionViewWillEnter() {
+    this.isLoading = true;
     this._loadData();
   }
 
@@ -27,12 +33,9 @@ export class AdmCategoriasPage {
     let categoriasResult = await this.categoriaSrv.get();
 
     if(categoriasResult.success) {
+      this.isLoading = false;
       this.lista = <Array<CategoriaModel>>categoriasResult.data;
     }
-  }
-
-  ionViewDidEnter() {
-    this._loadData();
   }
 
   addOrEdit(model?: CategoriaModel): void {

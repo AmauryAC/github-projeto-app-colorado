@@ -1,0 +1,69 @@
+<!--
+  Generated template for the AdmComercioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Comércio</ion-title>
+    <ion-buttons right>
+      <button ion-button clear (click)="salvar()">Salvar</button>
+      <button *ngIf="comercio._id" ion-button icon-only (click)="excluir()">
+        <ion-icon name="trash"></ion-icon>
+      </button>      
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list no-lines>
+    <ion-item>
+      <ion-label floating>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="comercio.nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Descrição</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="comercio.descricao"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select [(ngModel)]="comercio.categoria">
+        <ion-option value="{{ item._id }}" *ngFor="let item of categorias">{{ item.nome }}</ion-option> 
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="comercio.tipo">
+        <ion-option value="{{ item }}" *ngFor="let item of tipos">{{ item }}</ion-option> 
+      </ion-select>
+    </ion-item>
+    <!-- <ion-item> -->
+      <!-- <ion-label>Estabelecimento Fixo</ion-label> -->
+      <ion-list radio-group [(ngModel)]="comercio.estabFixo">
+        <ion-list-header>
+          Estabelecimento Fixo
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Sim</ion-label>
+          <ion-radio checked value="true"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Não</ion-label>
+          <ion-radio value="false"></ion-radio>
+        </ion-item>       
+      </ion-list>
+    <!-- </ion-item> -->
+    <ion-item text-center>
+      <button ion-button clear (click)="getPictureOptions()"><ion-icon name="camera" item-left></ion-icon>Selecionar Foto</button>
+    </ion-item>
+    <ion-item *ngIf="comercio.foto">
+      <img [src]="comercio.foto">
+    </ion-item>
+  </ion-list>
+
+</ion-content>

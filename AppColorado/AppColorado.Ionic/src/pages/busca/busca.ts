@@ -18,8 +18,8 @@ export class BuscaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BuscaPage');
+  ionViewWillEnter() {
+    this.navCtrl.setRoot('CategoriasPage');
   }
 
 }

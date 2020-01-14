@@ -1,0 +1,46 @@
+<!--
+  Generated template for the ComerciosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>comercios</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="comercios">
+    <ion-card *ngFor="let item of comercios | orderBy:'nome'">
+      <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/>
+      <ion-card-content>
+        <ion-card-title>
+          {{ item.nome }}
+        </ion-card-title>
+        <p>
+          {{ item.descricao }}
+        </p>
+      </ion-card-content>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-start clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>12 Likes</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-start clear small>
+            <ion-icon name="thumbs-down"></ion-icon>
+            <div>2 Deslikes</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+</ion-content>

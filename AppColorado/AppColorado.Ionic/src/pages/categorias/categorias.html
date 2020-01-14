@@ -1,0 +1,25 @@
+<!--
+  Generated template for the CategoriasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content no-padding>
+
+  <!-- <div class="blur"></div> -->
+
+  <p class="chamada">O que você procura?</p>
+
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  
+  <div class="categoria" *ngFor="let item of categorias | orderBy:'nome'" (click)="mostrarComerciosPorCategoria(item)">
+    <div class="image" [ngStyle]="{'background-image': 'url(' + item.foto + ')'}">
+
+    </div>
+    <p>
+      {{ item.nome }}
+    </p>
+  </div>
+
+</ion-content>

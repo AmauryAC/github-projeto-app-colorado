@@ -4,6 +4,7 @@ export class ConfigHelper {
 
     public static storageKeys = {
         token: 'appcolorado.token',
-        user: 'appcolorado.user'
+        user: 'appcolorado.user',
+        selectedCategory: 'appcolorado.selected.category'
     }
 }
