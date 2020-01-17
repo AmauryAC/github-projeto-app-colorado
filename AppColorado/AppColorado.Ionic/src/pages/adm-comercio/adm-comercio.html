@@ -31,7 +31,7 @@
       <ion-textarea rows="4" [(ngModel)]="comercio.descricao"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label>Categoria</ion-label>
+      <ion-label style="color: #999999;">Categoria</ion-label>
       <ion-select [(ngModel)]="comercio.categoria">
         <ion-option value="{{ item._id }}" *ngFor="let item of categorias">{{ item.nome }}</ion-option> 
       </ion-select>
@@ -42,22 +42,32 @@
         <ion-option value="{{ item }}" *ngFor="let item of tipos">{{ item }}</ion-option> 
       </ion-select>
     </ion-item>
-    <!-- <ion-item> -->
-      <!-- <ion-label>Estabelecimento Fixo</ion-label> -->
+    <ion-item>
+      <ion-label>Estabelecimento Fixo</ion-label>
+    </ion-item>
+    <div class="radio">
       <ion-list radio-group [(ngModel)]="comercio.estabFixo">
-        <ion-list-header>
-          Estabelecimento Fixo
-        </ion-list-header>
-        <ion-item>
-          <ion-label>Sim</ion-label>
-          <ion-radio checked value="true"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>Não</ion-label>
-          <ion-radio value="false"></ion-radio>
-        </ion-item>       
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4>
+              <ion-item>
+                <ion-label>Sim</ion-label>
+                <ion-radio checked value="true"></ion-radio>
+              </ion-item>
+            </ion-col>
+            <ion-col col-4>
+              <ion-item>
+                <ion-label>Não</ion-label>
+                <ion-radio value="false"></ion-radio>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>       
       </ion-list>
-    <!-- </ion-item> -->
+    </div>
+    <ion-item>
+      <button ion-button clear (click)="gerenciarContatos()"><ion-icon name="contacts" item-left></ion-icon>Gerenciar Contatos</button>
+    </ion-item>
     <ion-item text-center>
       <button ion-button clear (click)="getPictureOptions()"><ion-icon name="camera" item-left></ion-icon>Selecionar Foto</button>
     </ion-item>

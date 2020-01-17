@@ -5,6 +5,7 @@ export class ComercioModel {
     foto: string;
     categoria: any;
     usuario: any;
+    contatos: Array<any>;
     tipo: string;
     estabFixo: boolean;
 }

@@ -1,12 +1,14 @@
+import { AdmContatosPage } from './../adm-contatos/adm-contatos';
 import { UsuarioModel } from './../../app/models/usuarioModel';
 import { CategoriaProvider } from './../../providers/categoria/categoria';
 import { AlertProvider } from './../../providers/alert/alert';
 import { CameraProvider } from './../../providers/camera/camera';
 import { CategoriaModel } from './../../app/models/categoriaModel';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, Platform, ModalController } from 'ionic-angular';
 import { ComercioModel } from '../../app/models/comercioModel';
 import { ComercioProvider } from '../../providers/comercio/comercio';
+import { ContatoModel } from '../../app/models/contatoModel';
 
 /**
  * Generated class for the AdmComercioPage page.
@@ -27,7 +29,7 @@ export class AdmComercioPage {
   categorias: Array<CategoriaModel> = new Array<CategoriaModel>();
   tipos: Array<string> = new Array<string>();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform, private cameraSrv: CameraProvider, private alertSrv: AlertProvider, private comercioSrv: ComercioProvider, private categoriaSrv: CategoriaProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public platform: Platform, public modalCtrl: ModalController, private cameraSrv: CameraProvider, private alertSrv: AlertProvider, private comercioSrv: ComercioProvider, private categoriaSrv: CategoriaProvider) {
     let _comercio = this.navParams.get('_comercio');
 
     this.usuario = <UsuarioModel>this.navParams.get('_usuario');
@@ -38,6 +40,11 @@ export class AdmComercioPage {
     }
     else {
       this.comercio = new ComercioModel();
+      this.comercio.contatos = [
+        { tipo: 'Telefone Fixo', contato: '' },
+        { tipo: 'Telefone Celular', contato: '' },
+        { tipo: 'Website', contato: '' }
+      ];
     }
 
     this._loadData();
@@ -71,6 +78,7 @@ export class AdmComercioPage {
       this.alertSrv.toast('Comercio salvo com sucesso!', 'bottom');
       this.navCtrl.setRoot('AdmComerciosPage');
     }
+    console.log(this.comercio);
   }
 
   async excluir(): Promise<void> {
@@ -116,6 +124,10 @@ export class AdmComercioPage {
     });
 
     actionSheet.present();
+  }
+
+  gerenciarContatos(): void {
+    this.modalCtrl.create(AdmContatosPage, this.comercio.contatos).present();
   }
 
 }

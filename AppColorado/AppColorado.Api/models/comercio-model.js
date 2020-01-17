@@ -3,6 +3,8 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
+const contatoSchema = require('./contato-model').schema;
+
 const comercioModel = new schema({
     nome: { type: String, required: true, trim: true, index: true },
     descricao: { type: String, required: true },
@@ -13,6 +15,7 @@ const comercioModel = new schema({
     usuario: { type: schema.Types.ObjectId, ref: 'Usuario', required: true },
     tipo: { type: String, required: true },
     estabFixo: { type: Boolean, required: true },
+    contatos: [{ type: contatoSchema }],
     ativo: { type: Boolean, required: true, default: true },
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
