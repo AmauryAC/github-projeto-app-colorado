@@ -16,7 +16,7 @@
 <ion-content padding>
 
   <div class="comercios">
-    <ion-card *ngFor="let item of comercios | orderBy:'nome'">
+    <ion-card *ngFor="let item of comercios | orderBy:'nome'" (click)="abrirDetalhesComercio(item)">
       <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/>
       <ion-card-content>
         <ion-card-title>

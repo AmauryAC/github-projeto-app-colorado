@@ -39,4 +39,8 @@ export class ComerciosPage {
     }
   }
 
+  abrirDetalhesComercio(comercio: any): void {
+    this.navCtrl.push('DetalhesComercioPage', comercio);
+  }
+
 }

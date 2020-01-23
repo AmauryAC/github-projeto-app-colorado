@@ -10,7 +10,7 @@ const enderecoModel = new schema({
     bairro: { type: String, trim: true, index: true },
     cidade: { type: String, trim: true, index: true },
     uf: { type: String, trim: true, index: true },
-    cep: { type: String, trim: true, index: true },
+    cep: { type: String },
     ativo: { type: Boolean, required: true, default: true },
     dataCriacao: { type: Date, default: Date.now }
 }, { versionKey: false });
