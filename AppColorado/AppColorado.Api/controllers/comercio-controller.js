@@ -15,6 +15,20 @@ module.exports.post = async(req, res) => {
     _validationContract.isRequired(req.body.tipo, 'Informe o tipo do comércio.');
     _validationContract.isRequired(req.body.estabFixo, 'Informe se o comércio é um estabelecimento fixo ou não.');
 
+    if(req.body.estabFixo != undefined || req.body.estabFixo != null) {
+        if(req.body.estabFixo == 'true') {
+            if(req.body.endereco != undefined || req.body.endereco != null) {
+                _validationContract.isRequired(req.body.endereco.logradouro, 'Informe o endereço do estabelecimento.');
+            }
+            else {
+                _validationContract.isRequired('', 'Informe o endereço do estabelecimento.');
+            }
+        }
+        else {
+            _validationContract.isRequired(req.body.areaAtuacao, 'Informe a área de atuação do comércio.');
+        }
+    }
+
     ctrlBase.post(_repository, _validationContract, req, res);
 };
 

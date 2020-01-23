@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { ContatoModel } from '../../app/models/contatoModel';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 /**
  * Generated class for the AdmContatosPage page.
@@ -21,7 +20,6 @@ export class AdmContatosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public alertCtrl: AlertController) {
     this.contatos = this.navParams.data;
-    console.log(this.contatos);
   }
 
   showPrompt(contato: ContatoModel) {
@@ -73,7 +71,7 @@ export class AdmContatosPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(this.contatos);
   }
 
   validarTelefone(reg: RegExp, tel: string): boolean {

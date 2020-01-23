@@ -1,3 +1,5 @@
+import { AdmHorarioFuncionamentoPage } from './../adm-horario-funcionamento/adm-horario-funcionamento';
+import { AdmEnderecoPage } from './../adm-endereco/adm-endereco';
 import { AdmContatosPage } from './../adm-contatos/adm-contatos';
 import { UsuarioModel } from './../../app/models/usuarioModel';
 import { CategoriaProvider } from './../../providers/categoria/categoria';
@@ -8,7 +10,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, Platform, ModalController } from 'ionic-angular';
 import { ComercioModel } from '../../app/models/comercioModel';
 import { ComercioProvider } from '../../providers/comercio/comercio';
-import { ContatoModel } from '../../app/models/contatoModel';
 
 /**
  * Generated class for the AdmComercioPage page.
@@ -45,6 +46,8 @@ export class AdmComercioPage {
         { tipo: 'Telefone Celular', contato: '' },
         { tipo: 'Website', contato: '' }
       ];
+      // this.comercio.endereco = new EnderecoModel();
+      // this.comercio.horarioFunc = new Array<HorarioFuncModel>();
     }
 
     this._loadData();
@@ -127,7 +130,36 @@ export class AdmComercioPage {
   }
 
   gerenciarContatos(): void {
-    this.modalCtrl.create(AdmContatosPage, this.comercio.contatos).present();
+    let modal = this.modalCtrl.create(AdmContatosPage, this.comercio.contatos);
+
+    modal.onDidDismiss(data => {
+      if(data) {
+        this.comercio.contatos = data;
+      }
+    });
+    modal.present();
+  }
+
+  gerenciarEndereco(): void {
+    let modal = this.modalCtrl.create(AdmEnderecoPage, this.comercio.endereco);
+
+    modal.onDidDismiss(data => {
+      if(data) {
+        this.comercio.endereco = data;
+      }
+    });
+    modal.present();
+  }
+
+  gerenciarHorariosFuncionamento(): void {
+    let modal = this.modalCtrl.create(AdmHorarioFuncionamentoPage, this.comercio.horarioFunc);
+    
+    modal.onDidDismiss(data => {
+      if(data) {
+        this.comercio.horarioFunc = data;
+      }
+    });
+    modal.present();
   }
 
 }

@@ -52,7 +52,7 @@
             <ion-col col-4>
               <ion-item>
                 <ion-label>Sim</ion-label>
-                <ion-radio checked value="true"></ion-radio>
+                <ion-radio value="true"></ion-radio>
               </ion-item>
             </ion-col>
             <ion-col col-4>
@@ -65,8 +65,18 @@
         </ion-grid>       
       </ion-list>
     </div>
+    <ion-item *ngIf="comercio.estabFixo=='false' || comercio.estabFixo==false">
+      <ion-label floating>Área de Atuação</ion-label>
+      <ion-input type="text" [(ngModel)]="comercio.areaAtuacao"></ion-input>
+    </ion-item>
     <ion-item>
-      <button ion-button clear (click)="gerenciarContatos()"><ion-icon name="contacts" item-left></ion-icon>Gerenciar Contatos</button>
+      <button ion-button clear (click)="gerenciarContatos()"><ion-icon name="contacts" item-left></ion-icon>Contatos</button>
+    </ion-item>
+    <ion-item *ngIf="comercio.estabFixo=='true' || comercio.estabFixo==true">
+      <button ion-button clear (click)="gerenciarEndereco()"><ion-icon name="compass" item-left></ion-icon>Endereço</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button clear (click)="gerenciarHorariosFuncionamento()"><ion-icon name="time" item-left></ion-icon>Horários de Funcionamento</button>
     </ion-item>
     <ion-item text-center>
       <button ion-button clear (click)="getPictureOptions()"><ion-icon name="camera" item-left></ion-icon>Selecionar Foto</button>

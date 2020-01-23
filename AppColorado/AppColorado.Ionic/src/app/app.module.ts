@@ -1,3 +1,5 @@
+import { AdmHorarioFuncionamentoPage } from './../pages/adm-horario-funcionamento/adm-horario-funcionamento';
+import { AdmEnderecoPage } from './../pages/adm-endereco/adm-endereco';
 import { AdmContatosPage } from './../pages/adm-contatos/adm-contatos';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -6,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Camera } from '@ionic-native/camera';
 import { Network } from '@ionic-native/network';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
 
 import { MyApp } from './app.component';
@@ -18,11 +21,14 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { CategoriaProvider } from '../providers/categoria/categoria';
 import { CameraProvider } from '../providers/camera/camera';
 import { ComercioProvider } from '../providers/comercio/comercio';
+import { EnderecoProvider } from '../providers/endereco/endereco';
 
 @NgModule({
   declarations: [
     MyApp,
-    AdmContatosPage
+    AdmContatosPage,
+    AdmEnderecoPage,
+    AdmHorarioFuncionamentoPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,9 @@ import { ComercioProvider } from '../providers/comercio/comercio';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AdmContatosPage
+    AdmContatosPage,
+    AdmEnderecoPage,
+    AdmHorarioFuncionamentoPage
   ],
   providers: [
     StatusBar,
@@ -48,8 +56,10 @@ import { ComercioProvider } from '../providers/comercio/comercio';
     CameraProvider,
     Camera,
     Network,
+    Geolocation,
     CategoriaProvider,
-    ComercioProvider
+    ComercioProvider,
+    EnderecoProvider
   ]
 })
 export class AppModule {}

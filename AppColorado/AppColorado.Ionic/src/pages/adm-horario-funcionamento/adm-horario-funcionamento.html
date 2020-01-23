@@ -1,0 +1,66 @@
+<!--
+  Generated template for the AdmHorarioFuncionamentoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Horários</ion-title >
+    <ion-buttons right>
+      <button ion-button clear (click)="salvar()">Salvar</button>
+    </ion-buttons>
+    <ion-buttons left style="padding-left: 15px;">
+      <button ion-button icon-only *ngIf="horarioFunc.length==0" (click)="dismiss({})"><ion-icon name="arrow-back"></ion-icon></button>
+      <button ion-button icon-only *ngIf="horarioFunc.length!=0" (click)="dismiss()"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list lines>
+    <ion-grid>
+      <ion-row class="titulo">
+        <ion-col col-2>
+          Dia Semana
+        </ion-col>
+        <ion-col col-4>
+          Abre às:
+        </ion-col>
+        <ion-col col-4>
+          Fecha às:
+        </ion-col>
+        <ion-col col-2>
+          Fechado?
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let item of horarioFunc">
+        <ion-col col-2>
+          <!-- <ion-item> -->
+            <ion-label text-wrap>{{ item.diaSemana }}</ion-label>
+          <!-- </ion-item> -->
+        </ion-col>
+        <ion-col col-4>
+          <ion-item>
+            <ion-datetime [disabled]="item.fechado" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="item.horarioAbertura"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item>
+            <ion-datetime [disabled]="item.fechado" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="item.horarioFechamento"></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col col-2>
+          <ion-item>
+            <ion-checkbox checked={{item.fechado}} [(ngModel)]="item.fechado" (ionChange)="limparHorarioFechado(item)"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+</ion-content>

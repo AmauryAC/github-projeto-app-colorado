@@ -1,0 +1,75 @@
+<!--
+  Generated template for the AdmEnderecoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Gerenciar Endereço</ion-title>
+    <ion-buttons right>
+      <button ion-button clear (click)="salvar()">Salvar</button>
+    </ion-buttons>
+    <ion-buttons left style="padding-left: 15px;">
+      <button ion-button icon-only *ngIf="!endereco.logradouro" (click)="dismiss({})"><ion-icon name="arrow-back"></ion-icon></button>
+      <button ion-button icon-only *ngIf="endereco.logradouro" (click)="dismiss()"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="Search for a place"></ion-searchbar>
+
+  <ion-list [hidden]="autocompleteItems && autocompleteItems.length == 0">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <span>Os campos com * são obrigatórios</span>
+  </ion-item>
+
+  <ion-list no-lines >
+    <ion-item>
+      <ion-label floating>Logradouro<span>*</span></ion-label>
+      <ion-input type="text" [(ngModel)]="endereco.logradouro" [disabled]="selecionado"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Número<span>*</span></ion-label>
+      <ion-input type="number" [(ngModel)]="endereco.numero"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Complemento</ion-label>
+      <ion-input type="text" [(ngModel)]="endereco.complemento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Bairro<span>*</span></ion-label>
+      <ion-input type="text" [(ngModel)]="endereco.bairro" [disabled]="selecionado"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Cidade<span>*</span></ion-label>
+      <ion-input type="text" [(ngModel)]="endereco.cidade" [disabled]="selecionado"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>UF<span>*</span></ion-label>
+      <!-- <ion-input type="text" [(ngModel)]="endereco.uf"></ion-input> -->
+      <ion-select [(ngModel)]="endereco.uf" [disabled]="selecionado">
+        <ion-option value="{{ item }}" *ngFor="let item of uf">{{ item }}</ion-option> 
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>CEP</ion-label>
+      <ion-input type="text" mask="00000-000" [(ngModel)]="endereco.cep"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-buttons right>
+    <button ion-button clear (click)="limparCampos()">Limpar Campos</button>
+  </ion-buttons>
+
+</ion-content>

@@ -8,4 +8,7 @@ export class ComercioModel {
     contatos: Array<any>;
     tipo: string;
     estabFixo: boolean;
+    endereco: any;
+    areaAtuacao: string;
+    horarioFunc: Array<any>;
 }
