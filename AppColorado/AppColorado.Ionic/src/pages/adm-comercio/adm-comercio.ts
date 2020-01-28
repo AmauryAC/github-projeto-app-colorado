@@ -78,7 +78,7 @@ export class AdmComercioPage {
     }
 
     if(sucesso) {
-      this.alertSrv.toast('Comercio salvo com sucesso!', 'bottom');
+      this.alertSrv.toast('Comércio salvo com sucesso!', 'bottom');
       this.navCtrl.setRoot('AdmComerciosPage');
     }
     console.log(this.comercio);

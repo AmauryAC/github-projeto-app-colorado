@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>comercios</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Comércios</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,10 @@
 
 <ion-content padding>
 
-  <div class="comercios">
+  <div class="comercios" *ngIf="!isLoading">
+    <ion-item text-wrap *ngIf="comercios.length == 0">
+      Não temos nenhum comércio cadastrado nessa categoria.
+    </ion-item>
     <ion-card *ngFor="let item of comercios | orderBy:'nome'" (click)="abrirDetalhesComercio(item)">
       <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/>
       <ion-card-content>
@@ -26,7 +29,7 @@
           {{ item.descricao }}
         </p>
       </ion-card-content>
-      <ion-row>
+      <!-- <ion-row>
         <ion-col>
           <button ion-button icon-start clear small>
             <ion-icon name="thumbs-up"></ion-icon>
@@ -39,7 +42,7 @@
             <div>2 Deslikes</div>
           </button>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
     </ion-card>
   </div>
 

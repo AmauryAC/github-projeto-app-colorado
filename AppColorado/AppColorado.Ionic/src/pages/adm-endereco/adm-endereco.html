@@ -64,7 +64,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>CEP</ion-label>
-      <ion-input type="text" mask="00000-000" [(ngModel)]="endereco.cep"></ion-input>
+      <ion-input type="text" [brmasker]="{mask: '00000-000', len: 9, type: 'num'}" [(ngModel)]="endereco.cep"></ion-input>
     </ion-item>
   </ion-list>
 

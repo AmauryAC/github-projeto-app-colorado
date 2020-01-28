@@ -1,3 +1,4 @@
+import { AdmCategoriasItemPage } from './../pages/adm-categorias-item/adm-categorias-item';
 import { AdmHorarioFuncionamentoPage } from './../pages/adm-horario-funcionamento/adm-horario-funcionamento';
 import { AdmEnderecoPage } from './../pages/adm-endereco/adm-endereco';
 import { AdmContatosPage } from './../pages/adm-contatos/adm-contatos';
@@ -10,6 +11,7 @@ import { Camera } from '@ionic-native/camera';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { MyApp } from './app.component';
 import { SpinnerProvider } from '../providers/spinner/spinner';
@@ -22,18 +24,22 @@ import { CategoriaProvider } from '../providers/categoria/categoria';
 import { CameraProvider } from '../providers/camera/camera';
 import { ComercioProvider } from '../providers/comercio/comercio';
 import { EnderecoProvider } from '../providers/endereco/endereco';
+import { ProdutoProvider } from '../providers/produto/produto';
+import { ServicoProvider } from '../providers/servico/servico';
+import { CategoriaItemProvider } from '../providers/categoria-item/categoria-item';
 
 @NgModule({
   declarations: [
     MyApp,
     AdmContatosPage,
     AdmEnderecoPage,
-    AdmHorarioFuncionamentoPage
+    AdmHorarioFuncionamentoPage,
+    AdmCategoriasItemPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    NgxMaskIonicModule.forRoot(),
+    BrMaskerModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -41,7 +47,8 @@ import { EnderecoProvider } from '../providers/endereco/endereco';
     MyApp,
     AdmContatosPage,
     AdmEnderecoPage,
-    AdmHorarioFuncionamentoPage
+    AdmHorarioFuncionamentoPage,
+    AdmCategoriasItemPage
   ],
   providers: [
     StatusBar,
@@ -59,7 +66,10 @@ import { EnderecoProvider } from '../providers/endereco/endereco';
     Geolocation,
     CategoriaProvider,
     ComercioProvider,
-    EnderecoProvider
+    EnderecoProvider,
+    ProdutoProvider,
+    ServicoProvider,
+    CategoriaItemProvider
   ]
 })
 export class AppModule {}

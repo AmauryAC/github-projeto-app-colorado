@@ -1,12 +1,12 @@
 'use strict'
 
-require('../models/servico-model');
+require('../models/categoria-item-model');
 
 const base = require('../bin/base/repository-base');
 
-class servicoRepository {
+class categoriaRepository {
     constructor() {
-        this._base = new base('Servico');
+        this._base = new base('CategoriaItem');
     }
 
     async create(data) {
@@ -18,20 +18,15 @@ class servicoRepository {
     }
 
     async getAll() {
-        //return await this._base.getAll();
-        return await this._base._model.find().populate('categoria', '_id nome');
+        return await this._base.getAll();
     }
 
     async getById(id) {
         return await this._base.getById(id);
     }
 
-    async getByCategoria(id) {
-        return await this._base._model.find({ categoria: id });
-    }
-
     async getByComercio(id) {
-        return await this._base._model.find({ comercio: id }).populate('categoria', '_id nome');
+        return await this._base._model.find({ comercio: id });
     }
 
     async delete(id) {
@@ -39,4 +34,4 @@ class servicoRepository {
     }
 }
 
-module.exports = servicoRepository;
+module.exports = categoriaRepository;

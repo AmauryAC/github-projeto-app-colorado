@@ -18,11 +18,20 @@ class produtoRepository {
     }
 
     async getAll() {
-        return await this._base.getAll();
+        //return await this._base.getAll();
+        return await this._base._model.find().populate('categoria', '_id nome');
     }
 
     async getById(id) {
         return await this._base.getById(id);
+    }
+
+    async getByCategoria(id) {
+        return await this._base._model.find({ categoria: id });
+    }
+
+    async getByComercio(id) {
+        return await this._base._model.find({ comercio: id }).populate('categoria', '_id nome');
     }
 
     async delete(id) {

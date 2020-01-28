@@ -9,6 +9,7 @@ const variables = require('../bin/configuration/variables');
 // Routes
 const usuarioRouter = require('../routes/usuario-router');
 const categoriaRouter = require('../routes/categoria-router');
+const categoriaItemRouter = require('../routes/categoria-item-router');
 const servicoRouter = require('../routes/servico-router');
 const produtoRouter = require('../routes/produto-router');
 const tipoRouter = require('../routes/tipo-router');
@@ -30,6 +31,7 @@ mongoose.connect(variables.Database.connection, { useNewUrlParser: true });
 // Configurando as rotas
 app.use('/api/usuario', usuarioRouter);
 app.use('/api/categoria', categoriaRouter);
+app.use('/api/categoria-item', categoriaItemRouter);
 app.use('/api/servico', servicoRouter);
 app.use('/api/produto', produtoRouter);
 app.use('/api/tipo', tipoRouter);

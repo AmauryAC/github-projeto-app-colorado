@@ -46,4 +46,12 @@ export class AdmComerciosPage {
     this.navCtrl.push('AdmComercioPage', { _usuario: this.usuario, _comercio: model });
   }
 
+  gerenciarProdutos(item: ComercioModel): void {
+    this.navCtrl.push('AdmProdutosPage', { _comercioId: item._id });
+  }
+
+  gerenciarServicos(item: ComercioModel): void {
+    this.navCtrl.push('AdmServicosPage', { _comercioId: item._id });
+  }
+
 }

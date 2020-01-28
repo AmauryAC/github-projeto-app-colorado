@@ -1,0 +1,58 @@
+<!--
+  Generated template for the AdmServicoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Serviço</ion-title>
+    <ion-buttons right>
+      <button ion-button clear (click)="salvar()">Salvar</button>
+      <button *ngIf="servico._id" ion-button icon-only (click)="excluir()">
+        <ion-icon name="trash"></ion-icon>
+      </button>      
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list no-lines>
+    <ion-item>
+      <ion-label floating>Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="servico.nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Descrição</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="servico.descricao"></ion-textarea>
+    </ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-9>
+          <ion-item style="padding: 0px;">
+            <ion-label style="color: #999999;">Categoria</ion-label>
+            <ion-select [(ngModel)]="servico.categoria">
+              <ion-option value="{{ item._id }}" *ngFor="let item of categorias">{{ item.nome }}</ion-option> 
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <ion-item>
+            <button ion-button clear icon-only (click)="gerenciarCategorias()" style="font-size: 15px;">
+              <ion-icon name="add-circle"></ion-icon>
+            </button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-item>
+      <ion-label>Preço (R$)</ion-label>
+      <ion-input type="money" [brmasker]="{money: true}" [(ngModel)]="servico.preco"></ion-input>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

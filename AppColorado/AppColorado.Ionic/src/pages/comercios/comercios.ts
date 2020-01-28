@@ -21,11 +21,13 @@ export class ComerciosPage {
 
   categoriaSelecionada: CategoriaModel = new CategoriaModel();
   comercios: Array<ComercioModel> = new Array<ComercioModel>();
+  isLoading: boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private comercioSrv: ComercioProvider) {
   }
 
   ionViewWillEnter() {
+    this.isLoading = true;
     this.categoriaSelecionada = <CategoriaModel>JSON.parse(localStorage.getItem(ConfigHelper.storageKeys.selectedCategory));
     this._load();
     console.log(this.navCtrl);
@@ -35,6 +37,7 @@ export class ComerciosPage {
     let comercioResult = await this.comercioSrv.comerciosByCategoria(this.categoriaSelecionada._id);
 
     if(comercioResult.success) {
+      this.isLoading = false;
       this.comercios = <Array<ComercioModel>>comercioResult.data;
     }
   }

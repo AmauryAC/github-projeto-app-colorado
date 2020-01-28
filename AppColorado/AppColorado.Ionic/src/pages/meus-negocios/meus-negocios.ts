@@ -18,8 +18,8 @@ export class MeusNegociosPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  admComercios(): void {
-    this.navCtrl.push('AdmComerciosPage');
+  ionViewWillEnter() {
+    this.navCtrl.setRoot('AdmComerciosPage');
   }
 
 }
