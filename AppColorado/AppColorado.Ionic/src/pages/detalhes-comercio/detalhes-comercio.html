@@ -15,8 +15,11 @@
       <ion-segment-button value="informacoes">
         Informações
       </ion-segment-button>
-      <ion-segment-button value="produtos">
+      <ion-segment-button value="produtos" *ngIf="item.vendProdutos=='true' || item.vendProdutos==true" (ionSelect)="loadProdutos()">
         Produtos
+      </ion-segment-button>
+      <ion-segment-button value="servicos" *ngIf="item.prestServicos=='true' || item.prestServicos==true" (ionSelect)="loadServicos()">
+        Serviços
       </ion-segment-button>
       <ion-segment-button value="avaliacoes">
         Avaliações
@@ -32,7 +35,8 @@
   <div [ngSwitch]="segment">
     <div *ngSwitchCase="'informacoes'">
       <ion-card>
-        <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/>
+        <img *ngIf="!comercio.foto" src="../../assets/imgs/no-photo.png"/>
+        <img *ngIf="comercio.foto" [src]="comercio.foto"/>
         <ion-card-content>
           <ion-card-title>
             {{ comercio.nome }}
@@ -109,6 +113,49 @@
             </ion-row>
           </ion-grid>
         </ion-list>
+      </ion-item-group>
+    </div>
+
+    <div *ngSwitchCase="'produtos'">
+      <ion-item text-wrap *ngIf="produtos.length == 0">
+        Não temos nenhum produto cadastrado nesse comércio.
+      </ion-item>
+      <ion-item-group *ngFor="let categoria of categorias">
+        <ion-item-divider color="light">{{ categoria }}</ion-item-divider>
+        <ion-card *ngFor="let item of produtos | filter:categoria">
+          <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/>
+          <img *ngIf="item.foto" [src]="item.foto"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{ item.nome }}
+            </ion-card-title>
+            <p>
+              {{ item.descricao }}
+            </p>
+            <span class="preco">R$ {{ item.preco }}</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-item-group>
+    </div>
+
+    <div *ngSwitchCase="'servicos'">
+      <ion-item text-wrap *ngIf="servicos.length == 0">
+        Não temos nenhum serviço cadastrado nesse comércio.
+      </ion-item>
+      <ion-item-group *ngFor="let categoria of categorias">
+        <ion-item-divider color="light">{{ categoria }}</ion-item-divider>
+        <ion-card *ngFor="let item of servicos | filter:categoria">
+          <!-- <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/> -->
+          <ion-card-content>
+            <ion-card-title>
+              {{ item.nome }}
+            </ion-card-title>
+            <p>
+              {{ item.descricao }}
+            </p>
+            <span class="preco">R$ {{ item.preco }}</span>
+          </ion-card-content>
+        </ion-card>
       </ion-item-group>
     </div>
   </div>

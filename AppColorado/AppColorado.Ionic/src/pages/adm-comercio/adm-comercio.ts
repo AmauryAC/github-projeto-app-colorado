@@ -38,6 +38,7 @@ export class AdmComercioPage {
     if(_comercio && _comercio._id) {
       this.comercio = <ComercioModel>_comercio;
       this.comercio.categoria = _comercio.categoria._id;
+      this.comercio.estabFixo = _comercio.estabFixo;
     }
     else {
       this.comercio = new ComercioModel();
@@ -46,6 +47,8 @@ export class AdmComercioPage {
         { tipo: 'Telefone Celular', contato: '' },
         { tipo: 'Website', contato: '' }
       ];
+      this.comercio.vendProdutos = false;
+      this.comercio.prestServicos = false;
       // this.comercio.endereco = new EnderecoModel();
       // this.comercio.horarioFunc = new Array<HorarioFuncModel>();
     }
@@ -60,7 +63,7 @@ export class AdmComercioPage {
       this.categorias = <Array<CategoriaModel>>categoriasResult.data;
     }
 
-    this.tipos = ['Vendedor de Produtos', 'Prestador de Serviços'];
+    //this.tipos = ['Vendedor de Produtos', 'Prestador de Serviços'];
   }
 
   async salvar(): Promise<void> {

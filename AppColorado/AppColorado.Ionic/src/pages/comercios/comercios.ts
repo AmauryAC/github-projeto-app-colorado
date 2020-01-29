@@ -23,7 +23,12 @@ export class ComerciosPage {
   comercios: Array<ComercioModel> = new Array<ComercioModel>();
   isLoading: boolean = true;
 
+  filtros: Array<string>;
+  filtro: String;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private comercioSrv: ComercioProvider) {
+    this.filtros = ['Nome', 'Bairro', 'Cidade', 'Região'];
+    this.filtro = '';
   }
 
   ionViewWillEnter() {

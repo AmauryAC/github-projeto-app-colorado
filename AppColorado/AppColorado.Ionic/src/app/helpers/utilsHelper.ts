@@ -6,6 +6,10 @@ export class UtilsHelper {
                 var y = b[field];
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
+        },
+
+        filter: (array: Array<any>, filter: string): any => {
+            return array.filter(item => item.categoria.nome == filter);
         }
     }
 

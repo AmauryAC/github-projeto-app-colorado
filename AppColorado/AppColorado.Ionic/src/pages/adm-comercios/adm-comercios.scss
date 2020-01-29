@@ -1,3 +1,26 @@
 page-adm-comercios {
+    img {
+        height: 200px;
+    }
 
+    ion-note {
+        font-size: 1.6rem !important;
+        float: right;
+        right: 10%;
+    }
+
+    ion-card-title {
+        font-weight: bold;
+        text-shadow: 2px 2px 2px lightgrey;
+    }
+
+    ion-item {
+        border: 1px solid red !important;
+        padding: 0px !important;
+    }
+
+    button {
+        margin: 0px !important;
+        font-size: 1.3rem !important;
+    }
 }

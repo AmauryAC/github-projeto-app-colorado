@@ -1,3 +1,19 @@
 page-comercios {
+    img {
+        height: 200px;
+    }
 
+    ion-card-title {
+        font-weight: bold;
+        text-shadow: 2px 2px 2px lightgrey;
+    }
+
+    ion-card-content p {
+        font-size: 1.5rem !important;
+    }
+
+    .filtro {
+        width: 75%;
+        margin-bottom: 0px;
+    }
 }

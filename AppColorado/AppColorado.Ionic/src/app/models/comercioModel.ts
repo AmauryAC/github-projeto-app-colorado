@@ -6,7 +6,8 @@ export class ComercioModel {
     categoria: any;
     usuario: any;
     contatos: Array<any>;
-    tipo: string;
+    vendProdutos: boolean;
+    prestServicos: boolean;
     estabFixo: boolean;
     endereco: any;
     areaAtuacao: string;

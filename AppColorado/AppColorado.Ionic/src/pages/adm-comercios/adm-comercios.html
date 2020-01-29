@@ -37,7 +37,8 @@
       Você não tem nenhum comércio cadastrado.
     </ion-item>
     <ion-card *ngFor="let item of lista | orderBy:'nome'">
-      <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/>
+      <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/>
+      <img *ngIf="item.foto" [src]="item.foto"/>
       <ion-card-content>
         <ion-card-title>
           {{ item.nome }}
@@ -47,13 +48,13 @@
             {{ item.categoria.nome }}
           </ion-note>
         </p>
-        <ion-item style="padding-left: 0px;">
+        <ion-item>
           <button ion-button clear (click)="addOrEdit(item)"><ion-icon name="settings" item-left></ion-icon>Editar</button>
         </ion-item>
-        <ion-item style="padding-left: 0px;" *ngIf="item.tipo=='Vendedor de Produtos'">
+        <ion-item *ngIf="item.vendProdutos=='true' || item.vendProdutos==true">
           <button ion-button clear (click)="gerenciarProdutos(item)"><ion-icon name="pricetag" item-left></ion-icon>Anunciar Produto</button>
         </ion-item>
-        <ion-item style="padding-left: 0px;" *ngIf="item.tipo=='Prestador de Serviços'">
+        <ion-item *ngIf="item.prestServicos=='true' || item.prestServicos==true">
           <button ion-button clear (click)="gerenciarServicos(item)"><ion-icon name="build" item-left></ion-icon>Anunciar Serviço</button>
         </ion-item>
       </ion-card-content>

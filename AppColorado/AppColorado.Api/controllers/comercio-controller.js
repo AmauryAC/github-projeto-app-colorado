@@ -12,8 +12,11 @@ module.exports.post = async(req, res) => {
     _validationContract.isRequired(req.body.nome, 'Informe o nome do comércio.');
     _validationContract.isRequired(req.body.descricao, 'Informe a descrição do comércio.');
     _validationContract.isRequired(req.body.categoria, 'Informe a categoria do comercio');
-    _validationContract.isRequired(req.body.tipo, 'Informe o tipo do comércio.');
-    _validationContract.isRequired(req.body.estabFixo, 'Informe se o comércio é um estabelecimento fixo ou não.');
+    // _validationContract.isRequired(req.body.estabFixo, 'Informe se o comércio é um estabelecimento fixo ou não.');
+
+    if(req.body.vendProdutos == false && req.body.prestServicos == false) {
+        _validationContract.isRequired('', 'Informe se o comércio vende produtos e/ou presta serviços.');
+    }
 
     if(req.body.estabFixo != undefined || req.body.estabFixo != null) {
         if(req.body.estabFixo == 'true') {
@@ -28,6 +31,9 @@ module.exports.post = async(req, res) => {
             _validationContract.isRequired(req.body.areaAtuacao, 'Informe a área de atuação do comércio.');
         }
     }
+    else {
+        _validationContract.isRequired('', 'Informe se o comércio é um estabelecimento fixo ou não.');
+    }
 
     ctrlBase.post(_repository, _validationContract, req, res);
 };
@@ -35,11 +41,33 @@ module.exports.post = async(req, res) => {
 module.exports.put = async(req, res) => {
     let _validationContract = new validation();
 
+    console.log(req.body);
+
     _validationContract.isRequired(req.body.nome, 'Informe o nome do comércio.');
     _validationContract.isRequired(req.body.descricao, 'Informe a descrição do comércio.');
     _validationContract.isRequired(req.body.categoria, 'Informe a categoria do comercio');
-    _validationContract.isRequired(req.body.tipo, 'Informe o tipo do comércio.');
-    _validationContract.isRequired(req.body.estabFixo, 'Informe se o comércio é um estabelecimento fixo ou não.');
+    // _validationContract.isRequired(req.body.estabFixo, 'Informe se o comércio é um estabelecimento fixo ou não.');
+
+    if(req.body.vendProdutos == false && req.body.prestServicos == false) {
+        _validationContract.isRequired('', 'Informe se o comércio vende produtos e/ou presta serviços.');
+    }
+
+    if(req.body.estabFixo != undefined || req.body.estabFixo != null) {
+        if(req.body.estabFixo == 'true') {
+            if(req.body.endereco != undefined || req.body.endereco != null) {
+                _validationContract.isRequired(req.body.endereco.logradouro, 'Informe o endereço do estabelecimento.');
+            }
+            else {
+                _validationContract.isRequired('', 'Informe o endereço do estabelecimento.');
+            }
+        }
+        else {
+            _validationContract.isRequired(req.body.areaAtuacao, 'Informe a área de atuação do comércio.');
+        }
+    }
+    else {
+        _validationContract.isRequired('', 'Informe se o comércio é um estabelecimento fixo ou não.');
+    }
 
     ctrlBase.put(_repository, _validationContract, req, res);
 };

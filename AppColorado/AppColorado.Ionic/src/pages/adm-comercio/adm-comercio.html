@@ -36,12 +36,22 @@
         <ion-option value="{{ item._id }}" *ngFor="let item of categorias">{{ item.nome }}</ion-option> 
       </ion-select>
     </ion-item>
-    <ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>Vendedor de Produtos</ion-label>
+        <ion-checkbox [(ngModel)]="comercio.vendProdutos"></ion-checkbox>
+      </ion-item>    
+      <ion-item>
+        <ion-label>Prestador de Serviços</ion-label>
+        <ion-checkbox [(ngModel)]="comercio.prestServicos"></ion-checkbox>
+      </ion-item>    
+    </ion-list>
+    <!-- <ion-item>
       <ion-label>Tipo</ion-label>
       <ion-select [(ngModel)]="comercio.tipo">
         <ion-option value="{{ item }}" *ngFor="let item of tipos">{{ item }}</ion-option> 
       </ion-select>
-    </ion-item>
+    </ion-item> -->
     <ion-item>
       <ion-label>Estabelecimento Fixo</ion-label>
     </ion-item>

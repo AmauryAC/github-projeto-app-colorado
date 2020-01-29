@@ -19,8 +19,22 @@
     <ion-item text-wrap *ngIf="comercios.length == 0">
       Não temos nenhum comércio cadastrado nessa categoria.
     </ion-item>
+    <div *ngIf="comercios.length != 0">
+      <ion-item class="filtro">
+        <ion-label style="color: #999999;">Filtrar por:</ion-label>
+        <ion-select [(ngModel)]="filtro">
+          <ion-option value="{{ item }}" *ngFor="let item of filtros">{{ item }}</ion-option> 
+        </ion-select>
+      </ion-item>
+      <ion-item no-padding *ngIf="filtro != ''">
+        <ion-searchbar placeholder="Pesquisar..." style="padding: 0px;"></ion-searchbar>
+      </ion-item>
+    </div>
+
     <ion-card *ngFor="let item of comercios | orderBy:'nome'" (click)="abrirDetalhesComercio(item)">
-      <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/>
+      <!-- <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/> -->
+      <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/>
+      <img *ngIf="item.foto" [src]="item.foto"/>
       <ion-card-content>
         <ion-card-title>
           {{ item.nome }}

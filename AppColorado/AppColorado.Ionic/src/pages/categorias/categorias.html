@@ -11,7 +11,7 @@
 
   <p class="chamada">O que você procura?</p>
 
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Tipos de comércios..." (ionInput)="getItems($event)"></ion-searchbar>
   
   <div class="categoria" *ngFor="let item of categorias | orderBy:'nome'" (click)="mostrarComerciosPorCategoria(item)">
     <div class="image" [ngStyle]="{'background-image': 'url(' + item.foto + ')'}">

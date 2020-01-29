@@ -1,3 +1,4 @@
+import { PipesModule } from './../../pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DetalhesComercioPage } from './detalhes-comercio';
@@ -7,6 +8,7 @@ import { DetalhesComercioPage } from './detalhes-comercio';
     DetalhesComercioPage,
   ],
   imports: [
+    PipesModule,
     IonicPageModule.forChild(DetalhesComercioPage),
   ],
 })
