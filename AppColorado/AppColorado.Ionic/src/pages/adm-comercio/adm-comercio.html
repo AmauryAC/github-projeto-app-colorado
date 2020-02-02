@@ -75,20 +75,20 @@
         </ion-grid>       
       </ion-list>
     </div>
-    <ion-item *ngIf="comercio.estabFixo=='false' || comercio.estabFixo==false">
+    <ion-item *ngIf="comercio.estabFixo=='false' || comercio.estabFixo==false" style="margin-bottom: 10px;">
       <ion-label floating>Área de Atuação</ion-label>
       <ion-input type="text" [(ngModel)]="comercio.areaAtuacao"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="botoes">
       <button ion-button clear (click)="gerenciarContatos()"><ion-icon name="contacts" item-left></ion-icon>Contatos</button>
     </ion-item>
-    <ion-item *ngIf="comercio.estabFixo=='true' || comercio.estabFixo==true">
+    <ion-item class="botoes" *ngIf="comercio.estabFixo=='true' || comercio.estabFixo==true">
       <button ion-button clear (click)="gerenciarEndereco()"><ion-icon name="compass" item-left></ion-icon>Endereço</button>
     </ion-item>
-    <ion-item>
+    <ion-item class="botoes">
       <button ion-button clear (click)="gerenciarHorariosFuncionamento()"><ion-icon name="time" item-left></ion-icon>Horários de Funcionamento</button>
     </ion-item>
-    <ion-item text-center>
+    <ion-item class="botoes" text-center>
       <button ion-button clear (click)="getPictureOptions()"><ion-icon name="camera" item-left></ion-icon>Selecionar Foto</button>
     </ion-item>
     <ion-item *ngIf="comercio.foto">

@@ -28,8 +28,6 @@ export class AdmEnderecoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private enderecoSrv: EnderecoProvider, public viewCtrl: ViewController, public alertCtrl: AlertController) {
     this.endereco = <EnderecoModel>this.navParams.data;
-    console.log(this.navParams.data);
-    console.log(this.endereco);
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
   }
@@ -42,6 +40,8 @@ export class AdmEnderecoPage {
     this.endereco = this.enderecoSrv.selectSearchResult(item);
     this.autocompleteItems = [];
     this.selecionado = true;
+    console.log(item);
+    console.log(this.endereco);
   }
 
   salvar(): void {

@@ -1,0 +1,48 @@
+<!--
+  Generated template for the AdmAvaliacaoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Minha Avaliação</ion-title>
+    <!-- <ion-buttons right>
+      <button ion-button clear (click)="salvar()">Salvar</button>
+    </ion-buttons> -->
+    <ion-buttons left style="padding-left: 15px;">
+      <button ion-button icon-only (click)="dismiss()"><ion-icon name="arrow-back"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list no-lines>
+    <ion-item-divider color="light">Avaliação</ion-item-divider>
+    <ion-item style="padding-bottom: 0px;">
+      <ionic3-star-rating #rating
+        activeIcon = "ios-star"
+        defaultIcon = "ios-star-outline"
+        activeColor = "#fbbc05" 
+        defaultColor = "#fbbc05"
+        halfStar = "true"
+        readonly="false"
+        rating="{{avaliacao.estrelas}}"
+        fontSize = "32px"
+        (ratingChanged)="ratingChange($event)">
+      </ionic3-star-rating> 
+    </ion-item>
+    <ion-item style="padding-top: 0px;">
+      <ion-label floating>Deixar Comentário</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="avaliacao.comentario"></ion-textarea>
+    </ion-item>
+    <ion-item text-center>
+      <button ion-button clear (click)="salvar()">Enviar</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

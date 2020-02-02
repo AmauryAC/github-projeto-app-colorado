@@ -1,3 +1,4 @@
+import { AdmAvaliacaoPage } from './../pages/adm-avaliacao/adm-avaliacao';
 import { AdmCategoriasItemPage } from './../pages/adm-categorias-item/adm-categorias-item';
 import { AdmHorarioFuncionamentoPage } from './../pages/adm-horario-funcionamento/adm-horario-funcionamento';
 import { AdmEnderecoPage } from './../pages/adm-endereco/adm-endereco';
@@ -12,6 +13,7 @@ import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NgxMaskIonicModule } from 'ngx-mask-ionic';
 import { BrMaskerModule } from 'brmasker-ionic-3';
+import { StarRatingModule } from 'ionic3-star-rating';
 
 import { MyApp } from './app.component';
 import { SpinnerProvider } from '../providers/spinner/spinner';
@@ -27,6 +29,7 @@ import { EnderecoProvider } from '../providers/endereco/endereco';
 import { ProdutoProvider } from '../providers/produto/produto';
 import { ServicoProvider } from '../providers/servico/servico';
 import { CategoriaItemProvider } from '../providers/categoria-item/categoria-item';
+import { AvaliacaoProvider } from '../providers/avaliacao/avaliacao';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,14 @@ import { CategoriaItemProvider } from '../providers/categoria-item/categoria-ite
     AdmContatosPage,
     AdmEnderecoPage,
     AdmHorarioFuncionamentoPage,
-    AdmCategoriasItemPage
+    AdmCategoriasItemPage,
+    AdmAvaliacaoPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrMaskerModule,
+    StarRatingModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -48,7 +53,8 @@ import { CategoriaItemProvider } from '../providers/categoria-item/categoria-ite
     AdmContatosPage,
     AdmEnderecoPage,
     AdmHorarioFuncionamentoPage,
-    AdmCategoriasItemPage
+    AdmCategoriasItemPage,
+    AdmAvaliacaoPage
   ],
   providers: [
     StatusBar,
@@ -69,7 +75,8 @@ import { CategoriaItemProvider } from '../providers/categoria-item/categoria-ite
     EnderecoProvider,
     ProdutoProvider,
     ServicoProvider,
-    CategoriaItemProvider
+    CategoriaItemProvider,
+    AvaliacaoProvider
   ]
 })
 export class AppModule {}

@@ -19,7 +19,7 @@ module.exports.post = async(req, res) => {
     }
 
     if(req.body.estabFixo != undefined || req.body.estabFixo != null) {
-        if(req.body.estabFixo == 'true') {
+        if(req.body.estabFixo == true || req.body.estabFixo == 'true') {
             if(req.body.endereco != undefined || req.body.endereco != null) {
                 _validationContract.isRequired(req.body.endereco.logradouro, 'Informe o endereço do estabelecimento.');
             }
@@ -53,7 +53,7 @@ module.exports.put = async(req, res) => {
     }
 
     if(req.body.estabFixo != undefined || req.body.estabFixo != null) {
-        if(req.body.estabFixo == 'true') {
+        if(req.body.estabFixo == true || req.body.estabFixo == 'true') {
             if(req.body.endereco != undefined || req.body.endereco != null) {
                 _validationContract.isRequired(req.body.endereco.logradouro, 'Informe o endereço do estabelecimento.');
             }

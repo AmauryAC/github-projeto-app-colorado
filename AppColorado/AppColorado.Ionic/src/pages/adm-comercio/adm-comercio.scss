@@ -1,5 +1,27 @@
 page-adm-comercio {
+    ion-item {
+        padding: 0px !important;
+    }
+
     ion-label {
         color: #999999;
+        //margin: 0px !important;
+    }
+
+    .radio {
+        padding: 0px !important;
+    }
+
+    .list {
+        margin: 0px !important;
+    }
+
+    button {
+        margin: 0px !important;
+        font-size: 1.4rem !important;
+    }
+
+    .botoes ion-label {
+        margin: 0px !important;
     }
 }

@@ -1,10 +1,16 @@
+import { AlertProvider } from './../../providers/alert/alert';
+import { ConfigHelper } from './../../app/helpers/configHelper';
+import { UsuarioModel } from './../../app/models/usuarioModel';
+import { AdmAvaliacaoPage } from './../adm-avaliacao/adm-avaliacao';
+import { AvaliacaoProvider } from './../../providers/avaliacao/avaliacao';
 import { ServicoProvider } from './../../providers/servico/servico';
 import { ProdutoProvider } from './../../providers/produto/produto';
 import { ComercioModel } from './../../app/models/comercioModel';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { ProdutoModel } from '../../app/models/produtoModel';
 import { ServicoModel } from '../../app/models/servicoModel';
+import { AvaliacaoModel } from '../../app/models/avaliacaoModel';
 
 /**
  * Generated class for the DetalhesComercioPage page.
@@ -21,15 +27,18 @@ import { ServicoModel } from '../../app/models/servicoModel';
 export class DetalhesComercioPage {
 
   comercio: ComercioModel = new ComercioModel();
+  usuario: UsuarioModel;
   segment: string = "informacoes";
 
   isLoading: boolean = true;
   categorias: Array<String>;
   produtos: Array<ProdutoModel> = new Array<ProdutoModel>();
   servicos: Array<ServicoModel> = new Array<ServicoModel>();
+  avaliacoes: Array<AvaliacaoModel> = new Array<AvaliacaoModel>();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private produtoSrv: ProdutoProvider, private servicoSrv: ServicoProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private alertSrv: AlertProvider, private produtoSrv: ProdutoProvider, private servicoSrv: ServicoProvider, private avaliacaoSrv: AvaliacaoProvider) {
     this.comercio = <ComercioModel>this.navParams.data;
+    this.usuario = <UsuarioModel>JSON.parse(localStorage.getItem(ConfigHelper.storageKeys.user));
   }
 
   ionViewWillEnter() {
@@ -82,6 +91,58 @@ export class DetalhesComercioPage {
         }
       });
     }
+  }
+
+  async loadAvaliacoes(): Promise<void> {
+    let avaliacoesResult = await this.avaliacaoSrv.avaliacoesByComercio(this.comercio._id);
+
+    if(avaliacoesResult.success) {
+      this.isLoading = false;
+      this.avaliacoes = <Array<AvaliacaoModel>>avaliacoesResult.data;
+    }
+    console.log(this.avaliacoes);
+  }
+
+  gerenciarAvaliacao(avaliacao?: any): void {
+    let modal, novo;
+    let avaliacaoOri = {};
+
+    if(!avaliacao) {
+      modal = this.modalCtrl.create(AdmAvaliacaoPage, { _comercioId: this.comercio._id, _usuarioId: this.usuario._id });
+
+      novo = true;
+    }
+    else {
+      // avaliacaoOri = avaliacao;
+      Object.assign(avaliacaoOri, avaliacao);
+
+      modal = this.modalCtrl.create(AdmAvaliacaoPage, { _avaliacao: avaliacao, _comercioId: this.comercio._id, _usuarioId: this.usuario._id });
+
+      novo = false;
+    }
+    
+    modal.onDidDismiss(data => {
+      if(data) {
+        this.loadAvaliacoes();
+      }
+      else {
+        // avaliacao = avaliacaoOri;
+        if(novo == false) 
+          Object.assign(avaliacao, avaliacaoOri);
+      }
+    });
+    modal.present();
+  }
+
+  async excluir(avaliacao: any): Promise<void> {
+    this.alertSrv.confirm('Excluir?', `Deseja realmente excluir a sua avaliação?`, async () => {
+      let deleteResult = await this.avaliacaoSrv.delete(avaliacao._id);
+
+      if(deleteResult.success) {
+        this.alertSrv.toast('Avaliação excluída com sucesso!', 'bottom');
+        this.loadAvaliacoes();
+      }
+    });
   }
 
 }

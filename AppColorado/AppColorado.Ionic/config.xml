@@ -3,7 +3,7 @@
     <name>App Colorado</name>
     <description>App para comerciantes do Colorado e região.</description>
     <author email="appcomerccolorado@gmail.com">AmauryAC</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.8:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -103,6 +103,7 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
     <plugin name="cordova-plugin-network-information" spec="^2.0.2" />
-    <engine name="ios" spec="~4.5.5" />
-    <engine name="android" spec="~7.0.0" />
+    <allow-navigation href="http://192.168.1.8:8100" sessionid="05031f5c" />
+    <engine name="ios" spec="4.5.5" />
+    <engine name="android" spec="7.0.0" />
 </widget>

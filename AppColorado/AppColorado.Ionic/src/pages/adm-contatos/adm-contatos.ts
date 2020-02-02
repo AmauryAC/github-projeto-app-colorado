@@ -38,36 +38,76 @@ export class AdmContatosPage {
       mask = 'www.site.com.br';
     }
 
-    const prompt = this.alertCtrl.create({
-      title: contato.tipo,
-      message: 'Entre com os dados do contato',
-      inputs: [
-        {
-          name: 'contato',
-          placeholder: `Exemplo: ${mask}`,
-          value: contato.contato
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: data => { }
-        },
-        {
-          text: 'Salvar',
-          handler: data => {
-            if(reg) {
-              if(!this.validarTelefone(reg, data.contato)) {
-                prompt.setMessage('O número digitado é inválido!!!'.fontcolor('red'));
-                return false;
-              }
-            }            
-            contato.contato = data.contato;
+    if(contato.contato != '') {
+      const prompt = this.alertCtrl.create({
+        title: contato.tipo,
+        message: 'Entre com os dados do contato',
+        inputs: [
+          {
+            name: 'contato',
+            placeholder: `Exemplo: ${mask}`,
+            value: contato.contato
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            handler: data => { }
+          },
+          {
+            text: 'Excluir Contato',
+            handler: data => { 
+              contato.contato = '';
+            }
+          },
+          {
+            text: 'Salvar',
+            handler: data => {
+              if(reg) {
+                if(!this.validarTelefone(reg, data.contato)) {
+                  prompt.setMessage('O número digitado é inválido!!!'.fontcolor('red'));
+                  return false;
+                }
+              }            
+              contato.contato = data.contato;
+            }
           }
-        }
-      ]
-    });
-    prompt.present();
+        ]
+      });
+      prompt.present();
+    }
+    else {
+      const prompt = this.alertCtrl.create({
+        title: contato.tipo,
+        message: 'Entre com os dados do contato',
+        inputs: [
+          {
+            name: 'contato',
+            placeholder: `Exemplo: ${mask}`,
+            value: contato.contato
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            handler: data => { }
+          },
+          {
+            text: 'Salvar',
+            handler: data => {
+              if(reg) {
+                if(!this.validarTelefone(reg, data.contato)) {
+                  prompt.setMessage('O número digitado é inválido!!!'.fontcolor('red'));
+                  return false;
+                }
+              }            
+              contato.contato = data.contato;
+            }
+          }
+        ]
+      });
+      prompt.present();
+    }
   }
 
   dismiss() {

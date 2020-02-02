@@ -25,7 +25,7 @@ export class AdmCategoriasItemPage {
 
   salvou: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public alertCtrl: AlertController, private alertSrv: AlertProvider, private categoriaSrv: CategoriaItemProvider, private teste: UsuarioProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public alertCtrl: AlertController, private alertSrv: AlertProvider, private categoriaSrv: CategoriaItemProvider, private usuarioSrv: UsuarioProvider) {
     this.comercioId = this.navParams.data.comercioId;
     this.tipo = this.navParams.data.tipo;
 

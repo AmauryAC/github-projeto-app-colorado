@@ -30,6 +30,29 @@ module.exports.getById = async(req, res) => {
     ctrlBase.getById(_repository, req, res);
 };
 
+module.exports.getByComercio = async(req, res) => {
+    try {
+        let id = req.params.id;
+
+        if(id) {
+            let data = await _repository.getByComercio(id);
+
+            res.status(200).send(data);
+        } else {
+            res.status(400).send({
+                message: 'O parâmetro "id" precisa ser informado.'
+            });
+        }
+    } catch(err) {
+        console.log('GET BY ID com erro. Motivo: ', err);
+
+        res.status(500).send({
+            message: 'Erro no processo.',
+            error: err
+        });
+    }
+};
+
 module.exports.delete = async(req, res) => {
     ctrlBase.delete(_repository, req, res);
 };

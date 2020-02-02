@@ -72,6 +72,7 @@ export class EnderecoProvider {
   public selectSearchResult(item: any): EnderecoModel {
     try {
       let tamanho = item.terms.length;
+      let pos = -1;
 
       this.endereco.uf = item.terms[tamanho - 2].value;
       this.endereco.cidade = item.terms[tamanho - 3].value;
@@ -83,6 +84,12 @@ export class EnderecoProvider {
       else if(tamanho == 6) {
         this.endereco.numero = item.terms[tamanho - 5].value;
         this.endereco.logradouro = item.terms[tamanho - 6].value;
+      }
+
+      pos = this.endereco.logradouro.indexOf(',');
+
+      if(pos != -1) {
+        this.endereco.logradouro = this.endereco.logradouro.substring(pos, 0);
       }
 
       return this.endereco;

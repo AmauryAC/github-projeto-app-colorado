@@ -15,12 +15,15 @@ page-adm-comercios {
     }
 
     ion-item {
-        border: 1px solid red !important;
         padding: 0px !important;
+    }
+
+    ion-label {
+        margin: 0px !important;
     }
 
     button {
         margin: 0px !important;
-        font-size: 1.3rem !important;
+        font-size: 1.4rem !important;
     }
 }

@@ -25,6 +25,10 @@ class avaliacaoRepository {
         return await this._base.getById(id);
     }
 
+    async getByComercio(id) {
+        return await this._base._model.find({ comercio: id }).populate('usuario', '_id nome foto');;
+    }
+
     async delete(id) {
         return await this._base.delete(id);
     }

@@ -27,6 +27,12 @@
       <ion-label floating>Confirmar Senha:</ion-label>
       <ion-input [(ngModel)]="usuario.senhaConfirmacao" type="password"></ion-input>
     </ion-item>
+    <ion-item class="foto" text-center>
+      <button ion-button clear (click)="getPictureOptions()"><ion-icon name="camera" item-left></ion-icon>Selecionar Foto</button>
+    </ion-item>
+    <ion-item *ngIf="usuario.foto">
+      <img [src]="usuario.foto">
+    </ion-item>
   </ion-list>
 
   <ion-grid>

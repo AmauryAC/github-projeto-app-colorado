@@ -15,13 +15,13 @@
       <ion-segment-button value="informacoes">
         Informações
       </ion-segment-button>
-      <ion-segment-button value="produtos" *ngIf="item.vendProdutos=='true' || item.vendProdutos==true" (ionSelect)="loadProdutos()">
+      <ion-segment-button value="produtos" *ngIf="comercio.vendProdutos=='true' || comercio.vendProdutos==true" (ionSelect)="loadProdutos()">
         Produtos
       </ion-segment-button>
-      <ion-segment-button value="servicos" *ngIf="item.prestServicos=='true' || item.prestServicos==true" (ionSelect)="loadServicos()">
+      <ion-segment-button value="servicos" *ngIf="comercio.prestServicos=='true' || comercio.prestServicos==true" (ionSelect)="loadServicos()">
         Serviços
       </ion-segment-button>
-      <ion-segment-button value="avaliacoes">
+      <ion-segment-button value="avaliacoes" (ionSelect)="loadAvaliacoes()">
         Avaliações
       </ion-segment-button>
     </ion-segment>
@@ -157,6 +157,55 @@
           </ion-card-content>
         </ion-card>
       </ion-item-group>
+    </div>
+
+    <div *ngSwitchCase="'avaliacoes'">
+      <ion-item class="botoes" text-right>
+        <button ion-button clear (click)="gerenciarAvaliacao()">Fazer Avaliação</button>
+      </ion-item>
+      <ion-item text-wrap *ngIf="avaliacoes.length == 0">
+        Não foi feita nenhuma avaliação desse comércio.
+      </ion-item>
+      <ion-card *ngFor="let item of avaliacoes">
+        <ion-item>
+          <ion-avatar item-start>
+            <!-- <img src="img/marty-avatar.png"> -->
+            <img *ngIf="!item.usuario.foto" src="../../assets/imgs/no-photo.png"/>
+            <img *ngIf="item.usuario.foto" [src]="item.usuario.foto"/>
+          </ion-avatar>
+          <h2>{{ item.usuario.nome }}</h2>
+          <p>{{ item.dataCriacao }}</p>
+        </ion-item>
+        <ion-card-content>
+          <ionic3-star-rating #rating
+            activeIcon = "ios-star"
+            defaultIcon = "ios-star-outline"
+            activeColor = "#fbbc05" 
+            defaultColor = "#fbbc05"
+            halfStar = "true"
+            readonly="true"
+            rating="{{item.estrelas}}"
+            fontSize = "32px">
+          </ionic3-star-rating>
+          <p *ngIf="item.comentario && item.comentario != ''">{{ item.comentario }}</p>
+          <p *ngIf="!item.comentario || (item.comentario && item.comentario == '')">(Sem comentário)</p>
+          <ion-item *ngIf="usuario._id == item.usuario._id" text-right>
+            <button ion-button clear (click)="gerenciarAvaliacao(item)">Editar</button>
+            <button ion-button clear (click)="excluir(item)">Excluir</button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+      <!-- <ionic3-star-rating #rating
+        activeIcon = "ios-star"
+        defaultIcon = "ios-star-outline"
+        activeColor = "#fbbc05" 
+        defaultColor = "#fbbc05"
+        halfStar = "true"
+        readonly="false"
+        rating="3"
+        fontSize = "32px"
+        (ratingChanged)="logRatingChange($event)">
+      </ionic3-star-rating> -->
     </div>
   </div>
 
