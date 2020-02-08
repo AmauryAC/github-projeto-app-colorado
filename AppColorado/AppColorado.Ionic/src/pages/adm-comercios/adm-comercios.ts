@@ -38,7 +38,12 @@ export class AdmComerciosPage {
     if(comercioResult.success) {
       this.isLoading = false;
       this.lista = <Array<ComercioModel>>comercioResult.data;
-      console.log(this.lista);
+      
+      this.lista.forEach(x => {
+        if(!x.foto) {
+          x.foto = ConfigHelper.noPhoto;
+        }
+      });
     }
   }
 

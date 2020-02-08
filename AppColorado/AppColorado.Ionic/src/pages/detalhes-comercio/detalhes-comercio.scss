@@ -9,10 +9,14 @@ page-detalhes-comercio {
     }
 
     ion-card-content {
-        padding-bottom: 35px !important;
+        padding-bottom: 5px !important;
     }
     
-    ion-card-content p {
+    ion-card p {
+        font-size: 1.5rem !important;
+    }
+
+    ion-item {
         font-size: 1.5rem !important;
     }
 
@@ -26,19 +30,21 @@ page-detalhes-comercio {
         float: right;
         right: 10%;
         font-size: 1.75rem !important;
+        margin-bottom: 10px !important;
     }
 
     ion-item-divider {
         font-weight: bold !important;
         font-size: 2rem !important;
     }
-
-    ion-card-content {
-        padding-bottom: 0px !important;
-    }
     
     button {
         margin: 0px !important;
         font-size: 1.4rem !important;
+    }
+
+    .rating {
+        float: right;
+        right: 10%;
     }
 }

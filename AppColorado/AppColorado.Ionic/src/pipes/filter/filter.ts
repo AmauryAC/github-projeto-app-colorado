@@ -13,10 +13,10 @@ export class FilterPipe implements PipeTransform {
   /**
    * Takes a value and makes it lowercase.
    */
-  transform(value: Array<any>, args: string) {
+  transform(value: Array<any>, key: string, keyValue: string) {
     let _ret = [];
 
-    _ret = <Array<any>>UtilsHelper.data.filter(value, args);
+    _ret = <Array<any>>UtilsHelper.data.filter(value, key, keyValue);
 
     return _ret;
   }

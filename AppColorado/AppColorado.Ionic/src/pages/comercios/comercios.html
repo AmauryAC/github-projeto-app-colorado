@@ -27,37 +27,40 @@
         </ion-select>
       </ion-item>
       <ion-item no-padding *ngIf="filtro != ''">
-        <ion-searchbar placeholder="Pesquisar..." style="padding: 0px;"></ion-searchbar>
+        <ion-searchbar placeholder="Pesquisar..." style="padding: 0px;" (ionInput)="getItems($event)" (ionClear)="limparFiltro($event)"></ion-searchbar>
       </ion-item>
     </div>
 
-    <ion-card *ngFor="let item of comercios | orderBy:'nome'" (click)="abrirDetalhesComercio(item)">
-      <!-- <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/> -->
-      <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/>
-      <img *ngIf="item.foto" [src]="item.foto"/>
-      <ion-card-content>
-        <ion-card-title>
-          {{ item.nome }}
-        </ion-card-title>
-        <p>
-          {{ item.descricao }}
-        </p>
-      </ion-card-content>
-      <!-- <ion-row>
-        <ion-col>
-          <button ion-button icon-start clear small>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>12 Likes</div>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-start clear small>
-            <ion-icon name="thumbs-down"></ion-icon>
-            <div>2 Deslikes</div>
-          </button>
-        </ion-col>
-      </ion-row> -->
-    </ion-card>
+    <div *ngIf="valor == ''">
+      <ion-card *ngFor="let item of comercios | orderBy:'nome'" (click)="abrirDetalhesComercio(item)">
+        <!-- <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/> -->
+        <!-- <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/> -->
+        <img [src]="item.foto"/>
+        <ion-card-content>
+          <ion-card-title>
+            {{ item.nome }}
+          </ion-card-title>
+          <p>
+            {{ item.descricao }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="valor != ''">
+      <ion-card *ngFor="let item of comercios | orderBy:'nome' | filter:filtro:valor" (click)="abrirDetalhesComercio(item)">
+        <!-- <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/> -->
+        <!-- <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/> -->
+        <img [src]="item.foto"/>
+        <ion-card-content>
+          <ion-card-title>
+            {{ item.nome }}
+          </ion-card-title>
+          <p>
+            {{ item.descricao }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 
 </ion-content>

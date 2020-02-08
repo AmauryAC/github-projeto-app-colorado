@@ -34,15 +34,16 @@
 
   <div [ngSwitch]="segment">
     <div *ngSwitchCase="'informacoes'">
-      <ion-card>
-        <img *ngIf="!comercio.foto" src="../../assets/imgs/no-photo.png"/>
-        <img *ngIf="comercio.foto" [src]="comercio.foto"/>
+      <ion-card style="padding-bottom: 10px;">
+        <!-- <img *ngIf="!comercio.foto" src="../../assets/imgs/no-photo.png"/> -->
+        <img [src]="comercio.foto"/>
         <ion-card-content>
           <ion-card-title>
             {{ comercio.nome }}
           </ion-card-title>
-          <span>(4.5 Estrelas)</span>
-          <p>
+          <span class="rating" *ngIf="avaliacoes.length != 0"><ion-icon name="star"></ion-icon> ({{ rating.toFixed(1) }})</span>
+          <span class="rating" *ngIf="avaliacoes.length == 0"><ion-icon name="star"></ion-icon> (Sem Avaliações)</span>
+          <p style="margin-top: 30px;">
             {{ comercio.descricao }}
           </p>
         </ion-card-content>
@@ -122,9 +123,9 @@
       </ion-item>
       <ion-item-group *ngFor="let categoria of categorias">
         <ion-item-divider color="light">{{ categoria }}</ion-item-divider>
-        <ion-card *ngFor="let item of produtos | filter:categoria">
-          <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/>
-          <img *ngIf="item.foto" [src]="item.foto"/>
+        <ion-card *ngFor="let item of produtos | filter:'Categoria':categoria">
+          <!-- <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/> -->
+          <img [src]="item.foto"/>
           <ion-card-content>
             <ion-card-title>
               {{ item.nome }}
@@ -144,8 +145,7 @@
       </ion-item>
       <ion-item-group *ngFor="let categoria of categorias">
         <ion-item-divider color="light">{{ categoria }}</ion-item-divider>
-        <ion-card *ngFor="let item of servicos | filter:categoria">
-          <!-- <img src="https://static.cbncuritiba.com/cbn/wp-content/uploads/2019/05/comc3a9rcio-foto-aen-2-696x464.jpg"/> -->
+        <ion-card *ngFor="let item of servicos | filter:'Categoria':categoria">
           <ion-card-content>
             <ion-card-title>
               {{ item.nome }}
@@ -170,13 +170,13 @@
         <ion-item>
           <ion-avatar item-start>
             <!-- <img src="img/marty-avatar.png"> -->
-            <img *ngIf="!item.usuario.foto" src="../../assets/imgs/no-photo.png"/>
-            <img *ngIf="item.usuario.foto" [src]="item.usuario.foto"/>
+            <!-- <img *ngIf="!item.usuario.foto" src="../../assets/imgs/no-photo.png"/> -->
+            <img [src]="item.usuario.foto"/>
           </ion-avatar>
           <h2>{{ item.usuario.nome }}</h2>
           <p>{{ item.dataCriacao }}</p>
         </ion-item>
-        <ion-card-content>
+        <ion-card-content style="padding-right: 0px;">
           <ionic3-star-rating #rating
             activeIcon = "ios-star"
             defaultIcon = "ios-star-outline"
@@ -187,8 +187,8 @@
             rating="{{item.estrelas}}"
             fontSize = "32px">
           </ionic3-star-rating>
-          <p *ngIf="item.comentario && item.comentario != ''">{{ item.comentario }}</p>
-          <p *ngIf="!item.comentario || (item.comentario && item.comentario == '')">(Sem comentário)</p>
+          <p style="padding: 10px 0px;" *ngIf="item.comentario && item.comentario != ''">{{ item.comentario }}</p>
+          <p style="padding: 10px 0px;" *ngIf="!item.comentario || (item.comentario && item.comentario == '')">(Sem comentário)</p>
           <ion-item *ngIf="usuario._id == item.usuario._id" text-right>
             <button ion-button clear (click)="gerenciarAvaliacao(item)">Editar</button>
             <button ion-button clear (click)="excluir(item)">Excluir</button>

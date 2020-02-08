@@ -35,6 +35,13 @@ export class CategoriasPage {
 
     if(categoriaResult.success) {
       this.categorias = <Array<CategoriaModel>>categoriaResult.data;
+
+      this.categorias.forEach(x => {
+        if(!x.foto) {
+          x.foto = ConfigHelper.noPhoto;
+        }
+      });
+
       this.categoriasOri = this.categorias;
     }
   }

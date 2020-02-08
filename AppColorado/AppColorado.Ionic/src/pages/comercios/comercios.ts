@@ -21,14 +21,17 @@ export class ComerciosPage {
 
   categoriaSelecionada: CategoriaModel = new CategoriaModel();
   comercios: Array<ComercioModel> = new Array<ComercioModel>();
+  comerciosOri: Array<ComercioModel> = new Array<ComercioModel>();
   isLoading: boolean = true;
 
   filtros: Array<string>;
   filtro: String;
+  valor: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private comercioSrv: ComercioProvider) {
-    this.filtros = ['Nome', 'Bairro', 'Cidade', 'Região'];
+    this.filtros = ['Nome', 'Bairro', 'Cidade', 'Área de Atuação'];
     this.filtro = '';
+    this.valor = '';
   }
 
   ionViewWillEnter() {
@@ -44,11 +47,38 @@ export class ComerciosPage {
     if(comercioResult.success) {
       this.isLoading = false;
       this.comercios = <Array<ComercioModel>>comercioResult.data;
+
+      this.comercios.forEach(x => {
+        if(!x.foto) {
+          x.foto = ConfigHelper.noPhoto;
+        }
+        console.log(x);
+      });
+
+      this.comerciosOri = this.comercios;
     }
   }
 
   abrirDetalhesComercio(comercio: any): void {
     this.navCtrl.push('DetalhesComercioPage', comercio);
+  }
+
+  getItems(ev: any) {
+    this.comercios = this.comerciosOri;
+
+    const val = ev.target.value;
+
+    if (val && val.trim() != '') {
+      this.valor = val;
+    }
+    else {
+      this.valor = val;
+    }
+  }
+
+  limparFiltro(ev: any) {
+    this.filtro = '';
+    this.valor = '';
   }
 
 }

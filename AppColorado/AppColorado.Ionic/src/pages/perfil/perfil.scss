@@ -1,3 +1,49 @@
 page-perfil {
+    ion-content {
+        // background: #F8F8F8 !important;
+    }
 
+    .image {
+        width: 120px;
+        height: 120px;
+        border: 2px solid white;
+        border-radius: 50%;
+        margin: 0 auto;
+        background-size: cover;
+    }
+
+    .admBotao {
+        top: 150px;
+        left: 50%;
+        margin-left: -70px !important;
+        margin-top: 20px !important;
+    }
+
+    .formulario {
+        margin-top: 135px;
+        padding: 10px;
+    }
+
+    .formulario input {
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 7px;
+        // background: #f8f8f8;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        text-transform: uppercase;
+    }
+
+    .image {
+        position: absolute;
+        left: 50%;
+        margin-left: -60px !important;
+        margin-top: 24px !important;
+    }
+
+    .botao {
+        position: fixed;
+        width: calc(100% - 50px);
+        bottom: 25px;
+    }
 }

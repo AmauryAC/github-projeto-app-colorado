@@ -8,8 +8,30 @@ export class UtilsHelper {
             });
         },
 
-        filter: (array: Array<any>, filter: string): any => {
-            return array.filter(item => item.categoria.nome == filter);
+        filter: (array: Array<any>, key: string, keyValue: string): any => {
+            if(key && keyValue) {
+                if(key == 'Categoria') {
+                    return array.filter(item => item.categoria.nome == keyValue);
+                }
+                else if(key == 'Nome') {
+                    return array.filter(item => item.nome.toLowerCase().indexOf(keyValue.toLowerCase()) != -1);
+                }
+                else if(key == 'Bairro') {
+                    array = array.filter(item => item.estabFixo == true);
+
+                    return array.filter(item => item.endereco.bairro.toLowerCase().indexOf(keyValue.toLowerCase()) != -1);
+                }
+                else if(key == 'Cidade') {
+                    array = array.filter(item => item.estabFixo == true);
+
+                    return array.filter(item => item.endereco.cidade.toLowerCase().indexOf(keyValue.toLowerCase()) != -1);
+                }
+                else if(key == 'Área de Atuação') {
+                    array = array.filter(item => item.estabFixo == false);
+
+                    return array.filter(item => item.areaAtuacao.toLowerCase().indexOf(keyValue.toLowerCase()) != -1);
+                }     
+            }
         }
     }
 

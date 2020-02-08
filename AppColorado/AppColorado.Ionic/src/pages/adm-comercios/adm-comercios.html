@@ -37,8 +37,8 @@
       Você não tem nenhum comércio cadastrado.
     </ion-item>
     <ion-card *ngFor="let item of lista | orderBy:'nome'">
-      <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/>
-      <img *ngIf="item.foto" [src]="item.foto"/>
+      <!-- <img *ngIf="!item.foto" src="../../assets/imgs/no-photo.png"/> -->
+      <img [src]="item.foto"/>
       <ion-card-content>
         <ion-card-title>
           {{ item.nome }}

@@ -31,6 +31,7 @@ export class DetalhesComercioPage {
   segment: string = "informacoes";
 
   isLoading: boolean = true;
+  rating: number;
   categorias: Array<String>;
   produtos: Array<ProdutoModel> = new Array<ProdutoModel>();
   servicos: Array<ServicoModel> = new Array<ServicoModel>();
@@ -39,6 +40,12 @@ export class DetalhesComercioPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, private alertSrv: AlertProvider, private produtoSrv: ProdutoProvider, private servicoSrv: ServicoProvider, private avaliacaoSrv: AvaliacaoProvider) {
     this.comercio = <ComercioModel>this.navParams.data;
     this.usuario = <UsuarioModel>JSON.parse(localStorage.getItem(ConfigHelper.storageKeys.user));
+
+    if(!this.comercio.foto) {
+      this.comercio.foto = ConfigHelper.noPhoto;
+    }
+
+    this.loadAvaliacoes();
   }
 
   ionViewWillEnter() {
@@ -72,6 +79,9 @@ export class DetalhesComercioPage {
         if(this.categorias.indexOf(x.categoria.nome) == -1) {
           this.categorias.push(x.categoria.nome);
         }
+        if(!x.foto) {
+          x.foto = ConfigHelper.noPhoto;
+        }
       });
     }
   }
@@ -90,6 +100,7 @@ export class DetalhesComercioPage {
           this.categorias.push(x.categoria.nome);
         }
       });
+      console.log(this.servicos);
     }
   }
 
@@ -99,8 +110,15 @@ export class DetalhesComercioPage {
     if(avaliacoesResult.success) {
       this.isLoading = false;
       this.avaliacoes = <Array<AvaliacaoModel>>avaliacoesResult.data;
+
+      this.avaliacoes.forEach(x => {
+        if(!x.usuario.foto) {
+          x.usuario.foto = ConfigHelper.noUserPhoto;
+        }
+      });
+
+      this.getRating(this.avaliacoes);
     }
-    console.log(this.avaliacoes);
   }
 
   gerenciarAvaliacao(avaliacao?: any): void {
@@ -143,6 +161,16 @@ export class DetalhesComercioPage {
         this.loadAvaliacoes();
       }
     });
+  }
+
+  private getRating(avaliacoes: Array<any>): void {
+    this.rating = 0.0;
+
+    avaliacoes.forEach(x => {
+      this.rating += x.estrelas;
+    });
+    
+    this.rating /= avaliacoes.length;
   }
 
 }

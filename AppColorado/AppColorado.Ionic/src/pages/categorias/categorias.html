@@ -14,8 +14,8 @@
   <ion-searchbar placeholder="Tipos de comércios..." (ionInput)="getItems($event)"></ion-searchbar>
   
   <div class="categoria" *ngFor="let item of categorias | orderBy:'nome'" (click)="mostrarComerciosPorCategoria(item)">
-    <div *ngIf="!item.foto" class="image" [ngStyle]="{'background-image': 'url(../../assets/imgs/no-photo-2.png)'}"></div>
-    <div *ngIf="item.foto" class="image" [ngStyle]="{'background-image': 'url(' + item.foto + ')'}"></div>
+    <!-- <div *ngIf="!item.foto" class="image" [ngStyle]="{'background-image': 'url(../../assets/imgs/no-photo-2.png)'}"></div> -->
+    <div class="image" [ngStyle]="{'background-image': 'url(' + item.foto + ')'}"></div>
     <p>
       {{ item.nome }}
     </p>

@@ -6,8 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>perfil</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Minha Conta</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="logout()">
+        Sair
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -15,6 +20,20 @@
 
 <ion-content padding>
 
-  <button ion-button clear *ngIf="usuario.tipo=='admin'" (click)="admCategorias()">Administração</button>
+  <div class="image" [ngStyle]="{'background-image': 'url(' + usuarioLogado.foto + ')'}" (click)="mudarFoto()">
+  </div>
+
+  <button class="admBotao" ion-button clear *ngIf="usuarioLogado.tipo=='admin'" (click)="admCategorias()">Administração</button>
+
+  <div class="formulario">
+    <input type="text" placeholder="Nome" [(ngModel)]="usuarioLogado.nome">
+    <input type="text" placeholder="Email" [(ngModel)]="usuarioLogado.email">
+    
+    <button ion-button clear style="padding-left: 10px;">Alterar Senha</button>
+
+    <div class="botao">
+      <button ion-button outline color="primary" round block (click)="salvar()">Salvar os Dados</button>
+    </div>
+  </div>
 
 </ion-content>
